@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import logging
 from app.routes.pdf import router as pdf_router
+import os
 
 # Configurar logging
 logging.basicConfig(
@@ -19,10 +20,13 @@ app = FastAPI(
    version="1.0.0"
 )
 
+# Pegar as origins do .env e transformar em lista
+origins = os.getenv("CORS_ORIGINS", "http://localhost:3000").split(",")
+
 # Configurar CORS
 app.add_middleware(
    CORSMiddleware,
-   allow_origins=["http://localhost:3000", "https://carrot-two.vercel.app/", "https://carrot-rafael-zanini-francuccis-projects.vercel.app/", "https://carrot-git-main-rafael-zanini-francuccis-projects.vercel.app/"],  # seu frontend Next.js
+  allow_origins=origins,
    allow_credentials=True,
    allow_methods=["*"],
    allow_headers=["*"],
