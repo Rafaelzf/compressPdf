@@ -25,7 +25,7 @@ if not os.path.exists(GHOSTSCRIPT_PATH):
 async def compress_pdf(
     file: UploadFile, 
     compression_level: str = 'screen',
-    image_resolution: int = 150
+    image_resolution: int = 72
 ) -> bytes:
    try:
        # Validar o nível de compressão
