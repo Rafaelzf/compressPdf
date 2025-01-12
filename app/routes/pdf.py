@@ -31,7 +31,7 @@ async def compress_pdf_route(
        description="Nível de compressão do PDF"
    ),
    image_resolution: int = Query(
-       150, 
+       72, 
        ge=72, 
        le=300,
        description="Resolução das imagens em DPI"
