@@ -22,12 +22,14 @@ app = FastAPI(
 
 # Pegar as origins do .env e transformar em lista
 origins = os.getenv("CORS_ORIGINS", "http://localhost:3000").split(",")
+origins = [origin.strip() for origin in origins]
 
 # Configurar CORS
 app.add_middleware(
    CORSMiddleware,
   allow_origins=origins,
    allow_credentials=True,
+   allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
    allow_methods=["*"],
    allow_headers=["*"],
 )
